@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScene : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class MainScene : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private ScalingButton scalingButton1;
     [SerializeField] private ScalingButton scalingButton2;
+
+    [SerializeField] private ScrollRect itemsScrollRect;
+    [SerializeField] private RectTransform item1;
+    [SerializeField] private RectTransform item2;
 
     private int pageNum;
     private int groupInex;
@@ -36,7 +41,7 @@ public class MainScene : MonoBehaviour
         groupInex = num;
 
         scalingButton1.SetText("Противодействие пролёту, облёту, причинению вреда охраняемому объекту БПЛА.");
-        scalingButton2.SetText("Действия при захвате заложников."); 
+        scalingButton2.SetText("Действия при захвате заложников.");
     }
 
     public void ShowThirdPage(int num)
@@ -47,6 +52,14 @@ public class MainScene : MonoBehaviour
         thirdPage.SetActive(true);
         backButton.SetActive(true);
         itemIndex = num;
+
+        itemsScrollRect.content.gameObject.SetActive(false);
+
+        itemsScrollRect.content = num == 0 ? item1 : item2;
+        var pos = itemsScrollRect.content.anchoredPosition;
+        pos.y = 0;
+        itemsScrollRect.content.anchoredPosition = pos;
+        itemsScrollRect.content.gameObject.SetActive(true);
     }
 
     public void Back() 
