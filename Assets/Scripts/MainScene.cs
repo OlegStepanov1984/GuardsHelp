@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,7 @@ public class MainScene : MonoBehaviour
     [SerializeField] private ScalingButton scalingButton2;
 
     [SerializeField] private ScrollRect itemsScrollRect;
-    [SerializeField] private RectTransform item1;
-    [SerializeField] private RectTransform item2;
+    [SerializeField] private List<RectTransform> items1;
 
     [SerializeField] private RectTransform buttonsRT;
     [SerializeField] private RectTransform unitsRT;
@@ -90,7 +90,11 @@ public class MainScene : MonoBehaviour
 
         itemsScrollRect.content.gameObject.SetActive(false);
 
-        itemsScrollRect.content = num == 0 ? item1 : item2;
+        for (var i = 0; i < items1.Count;i++)
+        {
+            items1[i].gameObject.SetActive(i == num);
+        }
+        itemsScrollRect.content = items1[num];
         var pos = itemsScrollRect.content.anchoredPosition;
         pos.y = 0;
         itemsScrollRect.content.anchoredPosition = pos;
