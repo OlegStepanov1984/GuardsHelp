@@ -75,8 +75,8 @@ public class MainScene : MonoBehaviour
         backButton.SetActive(true);
         groupInex = num;
 
-        scalingButton1.SetText("Противодействие пролёту, облёту, причинению вреда охраняемому объекту БПЛА.");
-        scalingButton2.SetText("Действия при захвате заложников.");
+        //scalingButton1.SetText("Противодействие пролёту, облёту, причинению вреда охраняемому объекту БПЛА.");
+        //scalingButton2.SetText("Действия при захвате заложников.");
     }
 
     public void ShowThirdPage(int num)

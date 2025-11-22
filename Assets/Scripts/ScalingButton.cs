@@ -9,12 +9,12 @@ public class ScalingButton : MonoBehaviour
     [SerializeField] private RectTransform content;
     [SerializeField] private TMP_Text text;
 
-    
-    public void SetText(string txt) 
+
+    /*public void SetText(string txt) 
     {
         text.text = txt;
         StartCoroutine(UpdateHeight());
-    }
+    }*/
 
     private IEnumerator UpdateHeight() 
     {
