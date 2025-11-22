@@ -14,6 +14,10 @@ public class MainScene : MonoBehaviour
     [SerializeField] private RectTransform item1;
     [SerializeField] private RectTransform item2;
 
+    [SerializeField] private RectTransform buttonsRT;
+    [SerializeField] private RectTransform unitsRT;
+    [SerializeField] private RectTransform itemsRT;
+
     private int pageNum;
     private int groupInex;
     private int itemIndex;
@@ -29,7 +33,38 @@ public class MainScene : MonoBehaviour
         secondPage.SetActive(false);
         thirdPage.SetActive(false);
         backButton.SetActive(false);
+
+        ApplySafeArea(buttonsRT);
+        ApplySafeArea(unitsRT);
+        ApplySafeArea(itemsRT);
     }
+
+    void OnRectTransformDimensionsChange()
+    {
+        ApplySafeArea(buttonsRT);
+        ApplySafeArea(unitsRT);
+        ApplySafeArea(itemsRT);
+    }
+
+
+    void ApplySafeArea(RectTransform rectTransform)
+    {
+        Rect safeArea = Screen.safeArea;
+
+        Vector2 anchorMin = safeArea.position;
+        Vector2 anchorMax = safeArea.position + safeArea.size;
+
+        anchorMin.x /= Screen.width;
+        anchorMin.y /= Screen.height;
+        anchorMax.x /= Screen.width;
+        anchorMax.y /= Screen.height;
+
+        rectTransform.anchorMin = new Vector2(0f, anchorMin.y);
+        rectTransform.anchorMax = new Vector2(1f, anchorMax.y);
+        rectTransform.offsetMin = new Vector2(0f,110f);
+        rectTransform.offsetMax = new Vector2(0f,0f);
+    }
+
 
     public void ShowSecondPage(int num) 
     {
